@@ -33,16 +33,13 @@ export default class AccountsListScreen extends React.Component {
       }}>
         <FlatList
           data={[
-            {key: 'Devin'},
-            {key: 'Jackson'},
-            {key: 'James'},
-            {key: 'Joel'},
-            {key: 'John'},
-            {key: 'Jillian'},
-            {key: 'Jimmy'},
-            {key: 'Julie'},
+            {key:'1', name: 'Adams, Alan', phone:'612-111-1234', dur:'10', bal:'15'},
+            {key:'2', name: 'Baugh, Bo', phone:'612-222-1234', dur:'20', bal:'25'},
+            {key:'3', name: 'Smith, Sally', phone:'612-333-1234', dur:'30', bal:'35'},
           ]}
-          renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+          renderItem={({item}) => <Text style={styles.acctRow}>
+            {item.name}
+            </Text>}
         />
         <Button
           style={styles.addAcctBtn}
@@ -62,30 +59,10 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
   },
-  hourlyRateInput: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'left',
-    marginTop: 15,
-    marginRight: 10,
-    marginBottom: 10,
-    marginLeft: 0,
-    height: 30,
-    width: 80,
+  acctRow: {
     backgroundColor: 'white',
     padding: 5,
-    borderColor: 'black',
-    borderWidth: 1,
-  },
-  hourlyRateLabel: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'right',
-    marginTop: 20,
-    marginRight: 3,
-    marginBottom: 10,
-    marginLeft: 15,
+    marginBottom: 2,
+    flex: 1,
   },
 });
