@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
+import ProfileScreen from '../screens/ProfileScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
@@ -11,7 +12,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 //icon list: https://oblador.github.io/react-native-vector-icons/
 
 const ProfileStack = createStackNavigator({
-  Home: HomeScreen,
+  Profile: ProfileScreen,
 });
 
 
@@ -24,6 +25,25 @@ ProfileStack.navigationOptions = {
         Platform.OS === 'ios'
           ? `ios-man${focused ? '' : '-outline'}`
           : 'md-man'
+      }
+    />
+  ),
+};
+
+
+const HomeStack = createStackNavigator({
+  Home: HomeScreen,
+});
+
+HomeStack.navigationOptions = {
+  tabBarLabel: 'Home',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
       }
     />
   ),
@@ -59,6 +79,7 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   ProfileStack,
+  HomeStack,
   LinksStack,
   SettingsStack,
 });
