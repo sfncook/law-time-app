@@ -5,15 +5,13 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import AccountsListScreen from '../screens/AccountsListScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 
-//icon list: https://oblador.github.io/react-native-vector-icons/
+// icon list: https://oblador.github.io/react-native-vector-icons/
 
 const ProfileStack = createStackNavigator({
-  Profile: ProfileScreen,
+  screen: ProfileScreen,
 });
 
 
@@ -33,7 +31,7 @@ ProfileStack.navigationOptions = {
 
 
 const AccountsListStack = createStackNavigator({
-  Profile: AccountsListScreen,
+  screen: AccountsListScreen,
 });
 
 
@@ -51,41 +49,8 @@ AccountsListStack.navigationOptions = {
   ),
 };
 
-
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
-});
-
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
-};
-
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
-});
-
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
-    />
-  ),
-};
-
 const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+  screen: SettingsScreen,
 });
 
 SettingsStack.navigationOptions = {
@@ -99,9 +64,8 @@ SettingsStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
-  ProfileStack,
-  AccountsListStack,
-  HomeStack,
-  LinksStack,
-  SettingsStack,
+  Profile: ProfileStack,
+  AccountsList: AccountsListStack,
+  Settings: SettingsStack,
 });
+

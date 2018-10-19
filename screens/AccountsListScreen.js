@@ -20,8 +20,11 @@ export default class AccountsListScreen extends React.Component {
   }
 
   onClickAddAccount() {
+    const { navigate } = this.props.navigation;
     console.log("click onClickAddAccount");
+    navigate('Profile');
   }
+
 
   render() {
     return (
@@ -52,7 +55,7 @@ export default class AccountsListScreen extends React.Component {
         />
         <Button
           style={styles.addAcctBtn}
-          onPress={this.onClickAddAccount}
+          onPress={this.onClickAddAccount.bind(this)}
           title='+ Add Account'
           color='blue'
           accessibilityLabel='Button to add accounts from your device contact list'
