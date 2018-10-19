@@ -1,8 +1,10 @@
 import React from 'react';
 import {
+  Keyboard,
   StyleSheet,
   Text,
   TextInput,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 
@@ -24,16 +26,18 @@ export default class ProfileScreen extends React.Component {
 
   render() {
     return (
-      <View style={{flex: 1, flexDirection: 'row'}}>
-        <Text style={styles.getStartedText}>Your hourly rate:</Text>
-        <TextInput
-          style={styles.hourlyRateInput}
-          keyboardType='numeric'
-          onChangeText={(text)=> this.onChanged(text)}
-          value={this.state.hourlyRate}
-          maxLength={10}
-        />
-      </View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={{flex: 1, flexDirection: 'row'}}>
+          <Text style={styles.hourlyRateLabel}>Your hourly rate:      $</Text>
+          <TextInput
+            style={styles.hourlyRateInput}
+            keyboardType='numeric'
+            onChangeText={(text)=> this.onChanged(text)}
+            value={this.state.hourlyRate}
+            maxLength={10}
+          />
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
@@ -43,16 +47,26 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: 'rgba(96,100,109, 1)',
     lineHeight: 24,
-    textAlign: 'right',
-    margin: 10,
+    textAlign: 'left',
+    marginTop: 15,
+    marginRight: 10,
+    marginBottom: 10,
+    marginLeft: 0,
     height: 30,
-    width: 50,
+    width: 80,
+    backgroundColor: 'white',
+    padding: 5,
+    borderColor: 'black',
+    borderWidth: 1,
   },
-  getStartedText: {
+  hourlyRateLabel: {
     fontSize: 17,
     color: 'rgba(96,100,109, 1)',
     lineHeight: 24,
     textAlign: 'right',
-    margin: 10,
+    marginTop: 20,
+    marginRight: 3,
+    marginBottom: 10,
+    marginLeft: 15,
   },
 });
