@@ -73,23 +73,23 @@ AccountsListStack.navigationOptions = {
 
 
 
-const SettingsStack = createStackNavigator({
-  screen: SettingsScreen,
-});
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
-    />
-  ),
-};
+// const SettingsStack = createStackNavigator({
+//   screen: SettingsScreen,
+// });
+//
+// SettingsStack.navigationOptions = {
+//   tabBarLabel: 'Settings',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
+//     />
+//   ),
+// };
 
 export default createBottomTabNavigator({
   Profile: ProfileStack,
   AccountsList: AccountsListStack,
-  Settings: SettingsStack,
+  // Settings: SettingsStack,
 });
 
