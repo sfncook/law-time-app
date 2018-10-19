@@ -21,9 +21,10 @@ export default class AccountsListScreen extends React.Component {
   }
 
   onClickAddAccount() {
-    const { navigate } = this.props.navigation;
     console.log("click onClickAddAccount");
-    navigate('Profile');
+    const { push } = this.props.navigation;
+    // navigate('AddAccount');
+    push('AddAccount');
   }
 
 

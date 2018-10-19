@@ -12,7 +12,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 // icon list: https://oblador.github.io/react-native-vector-icons/
 
 const ProfileStack = createStackNavigator({
-  screen: ProfileScreen,
+  Profile: ProfileScreen,
 });
 
 
@@ -31,8 +31,29 @@ ProfileStack.navigationOptions = {
 };
 
 
+const AddAccountStack = createStackNavigator({
+  AddAccount: AddAccountScreen,
+});
+
+
+AddAccountStack.navigationOptions = {
+  tabBarLabel: 'AddAccount',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-list${focused ? '' : '-outline'}`
+          : 'md-list'
+      }
+    />
+  ),
+  tabBarVisible: false,
+};
+
 const AccountsListStack = createStackNavigator({
-  screen: AccountsListScreen,
+  AccountsList: AccountsListScreen,
+  AddAccount: AddAccountStack,
 });
 
 
@@ -52,27 +73,6 @@ AccountsListStack.navigationOptions = {
 
 
 
-const AddAccountStack = createStackNavigator({
-  screen: AddAccountScreen,
-});
-
-
-AddAccountStack.navigationOptions = {
-  tabBarLabel: 'AddAccount',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-list${focused ? '' : '-outline'}`
-          : 'md-list'
-      }
-    />
-  ),
-  headerTitle: 'foo-bar',
-  tabBarVisible: false,
-};
-
 const SettingsStack = createStackNavigator({
   screen: SettingsScreen,
 });
@@ -91,6 +91,5 @@ export default createBottomTabNavigator({
   Profile: ProfileStack,
   AccountsList: AccountsListStack,
   Settings: SettingsStack,
-  AddAccount: AddAccountStack,
 });
 
