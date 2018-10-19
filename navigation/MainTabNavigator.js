@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
+import AccountsListScreen from '../screens/AccountsListScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
@@ -25,6 +26,26 @@ ProfileStack.navigationOptions = {
         Platform.OS === 'ios'
           ? `ios-man${focused ? '' : '-outline'}`
           : 'md-man'
+      }
+    />
+  ),
+};
+
+
+const AccountsListStack = createStackNavigator({
+  Profile: AccountsListScreen,
+});
+
+
+AccountsListStack.navigationOptions = {
+  tabBarLabel: 'Accounts',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-list${focused ? '' : '-outline'}`
+          : 'md-list'
       }
     />
   ),
@@ -79,6 +100,7 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   ProfileStack,
+  AccountsListStack,
   HomeStack,
   LinksStack,
   SettingsStack,
