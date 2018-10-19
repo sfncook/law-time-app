@@ -7,13 +7,24 @@ import {
   View,
 } from 'react-native';
 
-export default class AccountsListScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Accounts',
-  };
+export default class AddAccountScreen extends React.Component {
+
+  // onClickBackToAccountsList() {
+  //   const { navigate } = this.props.navigation;
+  //   navigate('AccountsList');
+  // }
+  //
+  // static navigationOptions = {
+  //   title: 'Contacts',
+  //   // headerLeft: (
+  //   //   <Button
+  //   //     onPress={this.onClickBackToAccountsList.bind(this)}
+  //   //     title="<Back"
+  //   //   />
+  //   // ),
+  // };
 
   constructor(props) {
-    console.log('this.props.navigation:',props.navigation);
     super(props);
     this.state = {
       hourlyRate:'100',
