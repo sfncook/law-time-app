@@ -8,7 +8,6 @@ import {
 import { connect } from 'react-redux';
 
 import { Ionicons } from '@expo/vector-icons';
-import {setHourlyRate} from "../actions";
 
 const AddAccountScreenComponent = class AddAccountScreen extends React.Component {
 

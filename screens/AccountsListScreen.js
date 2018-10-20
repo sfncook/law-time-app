@@ -7,8 +7,9 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
+import connect from "react-redux/es/connect/connect";
 
-export default class AccountsListScreen extends React.Component {
+const AccountsListScreenComponent = class AccountsListScreen extends React.Component {
   static navigationOptions = {
     title: 'Accounts',
   };
@@ -34,11 +35,7 @@ export default class AccountsListScreen extends React.Component {
         alignItems: 'stretch',
       }}>
         <FlatList
-          data={[
-            {key:'1', name: 'Adams, Alan', phone:'612-111-1234', dur:'10', bal:'15'},
-            {key:'2', name: 'Baugh, Bo', phone:'612-222-1234', dur:'20', bal:'25'},
-            {key:'3', name: 'Smith, Sally', phone:'612-333-1234', dur:'30', bal:'35'},
-          ]}
+          data={this.props.accounts}
           renderItem={({item}) =>
             <TouchableHighlight onPress={
               ()=>{
@@ -109,3 +106,24 @@ const styles = StyleSheet.create({
   },
 
 });
+
+const mapStateToProps = state => {
+  return {
+    accounts: state.accounts,
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    // setHourlyRate: hourlyRate => {
+    //   dispatch(setHourlyRate(hourlyRate))
+    // }
+  }
+};
+
+const AccountsListScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AccountsListScreenComponent);
+
+export default AccountsListScreen;
