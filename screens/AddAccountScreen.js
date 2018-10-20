@@ -5,10 +5,12 @@ import {
   Text,
   View,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import { Ionicons } from '@expo/vector-icons';
+import {setHourlyRate} from "../actions";
 
-export default class AddAccountScreen extends React.Component {
+const AddAccountScreenComponent = class AddAccountScreen extends React.Component {
 
   static navigationOptions = {
     headerTitle: 'Contacts',
@@ -31,11 +33,7 @@ export default class AddAccountScreen extends React.Component {
     return (
       <View>
         <FlatList
-          data={[
-            {key:'1', name: 'Adams, Alan', isAcct:false},
-            {key:'2', name: 'Baugh, Bo', isAcct:false},
-            {key:'3', name: 'Smith, Sally', isAcct:true},
-          ]}
+          data={this.props.contacts}
           renderItem={
             ({item}) => {
               let iconStr;
@@ -73,3 +71,24 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   }
 });
+
+const mapStateToProps = state => {
+  return {
+    contacts: state.contacts,
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    // setHourlyRate: hourlyRate => {
+    //   dispatch(setHourlyRate(hourlyRate))
+    // }
+  }
+};
+
+const AddAccountScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddAccountScreenComponent);
+
+export default AddAccountScreen;

@@ -5,6 +5,11 @@ import {
 
 const defaultState = {
   hourlyRate: '110',
+  contacts: [
+    {key:'1', name: 'Adams, Alan', isAcct:false},
+    {key:'2', name: 'Baugh, Bo', isAcct:false},
+    {key:'3', name: 'Smith, Sally', isAcct:true},
+  ],
 };
 
 function reduce(state = defaultState, action) {
