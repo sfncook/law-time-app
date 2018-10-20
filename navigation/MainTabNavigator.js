@@ -64,7 +64,7 @@ AccountsListStack.navigationOptions = {
 
 
 export default createBottomTabNavigator({
-  Profile: ProfileStack,
   AccountsList: AccountsListStack,
+  Profile: ProfileStack,
 });
 
