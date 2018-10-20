@@ -16,6 +16,7 @@ export default class AccountDetailScreen extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log('detail this.props.navigation.state:', this.props.navigation.state);
     this.state = {
       hourlyRate:'100',
     }
