@@ -4,6 +4,7 @@ import {
   FlatList,
   StyleSheet,
   Text,
+  TouchableHighlight,
   View,
 } from 'react-native';
 
@@ -24,7 +25,6 @@ export default class AccountsListScreen extends React.Component {
     push('AddAccount');
   }
 
-
   render() {
     return (
       <View style={{
@@ -40,16 +40,23 @@ export default class AccountsListScreen extends React.Component {
             {key:'3', name: 'Smith, Sally', phone:'612-333-1234', dur:'30', bal:'35'},
           ]}
           renderItem={({item}) =>
-            <View style={styles.acctRow}>
-              <View style={styles.acctRowLeftCol}>
-                <Text style={styles.std}>{item.name}</Text>
-                <Text style={styles.std}>{item.phone}</Text>
+            <TouchableHighlight onPress={
+              ()=>{
+                const { push } = this.props.navigation;
+                push('AccountDetail', item);
+              }
+            }>
+              <View style={styles.acctRow}>
+                <View style={styles.acctRowLeftCol} >
+                  <Text style={styles.std}>{item.name}</Text>
+                  <Text style={styles.std}>{item.phone}</Text>
+                </View>
+                <View style={styles.acctRowRightCol}>
+                  <Text style={styles.dur}>{item.dur} min</Text>
+                  <Text style={styles.bal}>${item.bal}</Text>
+                </View>
               </View>
-              <View style={styles.acctRowRightCol}>
-                <Text style={styles.dur}>{item.dur} min</Text>
-                <Text style={styles.bal}>${item.bal}</Text>
-              </View>
-            </View>
+            </TouchableHighlight>
           }
         />
         <Button

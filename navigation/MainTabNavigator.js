@@ -6,7 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import AccountsListScreen from '../screens/AccountsListScreen';
 import AddAccountScreen from '../screens/AddAccountScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import AccountDetailScreen from "../screens/AccountDetailScreen";
 
 
 // icon list: https://oblador.github.io/react-native-vector-icons/
@@ -32,28 +32,18 @@ ProfileStack.navigationOptions = {
 
 
 const AddAccountStack = createStackNavigator({
-  AddAccount: AddAccountScreen,
+  screen: AddAccountScreen,
 });
 
+const AccountDetailStack = createStackNavigator({
+  screen: AccountDetailScreen,
+});
 
-AddAccountStack.navigationOptions = {
-  tabBarLabel: 'AddAccount',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-list${focused ? '' : '-outline'}`
-          : 'md-list'
-      }
-    />
-  ),
-  tabBarVisible: false,
-};
 
 const AccountsListStack = createStackNavigator({
   AccountsList: AccountsListScreen,
   AddAccount: AddAccountStack,
+  AccountDetail: AccountDetailStack,
 });
 
 
@@ -73,23 +63,8 @@ AccountsListStack.navigationOptions = {
 
 
 
-// const SettingsStack = createStackNavigator({
-//   screen: SettingsScreen,
-// });
-//
-// SettingsStack.navigationOptions = {
-//   tabBarLabel: 'Settings',
-//   tabBarIcon: ({ focused }) => (
-//     <TabBarIcon
-//       focused={focused}
-//       name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
-//     />
-//   ),
-// };
-
 export default createBottomTabNavigator({
   Profile: ProfileStack,
   AccountsList: AccountsListStack,
-  // Settings: SettingsStack,
 });
 
