@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Button,
   Keyboard,
   StyleSheet,
   Text,
@@ -10,26 +9,15 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import {toggleTodo} from '../actions'
+import {setHourlyRate} from '../actions'
 
 const ProfileScreenComponent = class ProfileScreen extends React.Component {
   static navigationOptions = {
     title: 'Profile',
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      hourlyRate:'100',
-    }
-  }
-
-  onChanged(text) {
-    console.log(text);
-  }
-
-  onClick() {
-    this.props.onTodoClick('test');
+  onChanged(hourlyRate) {
+    this.props.setHourlyRate(hourlyRate);
   }
 
   render() {
@@ -41,18 +29,14 @@ const ProfileScreenComponent = class ProfileScreen extends React.Component {
             style={styles.hourlyRateInput}
             keyboardType='numeric'
             onChangeText={(text)=> this.onChanged(text)}
-            value={this.state.hourlyRate}
+            value={this.props.hourlyRate}
             maxLength={10}
-          />
-          <Button
-            onPress={this.onClick.bind(this)}
-            title='Click THIS'
           />
         </View>
       </TouchableWithoutFeedback>
     );
   }
-}
+};
 
 const styles = StyleSheet.create({
   hourlyRateInput: {
@@ -84,16 +68,15 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  console.log('state:',state);
   return {
-    // todos: getVisibleTodos(state.todos, state.visibilityFilter)
+    hourlyRate: state.hourlyRate,
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTodoClick: id => {
-      dispatch(toggleTodo(id))
+    setHourlyRate: hourlyRate => {
+      dispatch(setHourlyRate(hourlyRate))
     }
   }
 };
