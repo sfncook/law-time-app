@@ -1,11 +1,12 @@
 import React from 'react';
 import {
-  Button,
   FlatList,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
+
+import { Ionicons } from '@expo/vector-icons';
 
 export default class AddAccountScreen extends React.Component {
 
@@ -22,7 +23,6 @@ export default class AddAccountScreen extends React.Component {
 
   onClickAddAccount() {
     const { navigate } = this.props.navigation;
-    console.log("click onClickAddAccount");
     navigate('Profile');
   }
 
@@ -36,10 +36,23 @@ export default class AddAccountScreen extends React.Component {
             {key:'2', name: 'Baugh, Bo', isAcct:false},
             {key:'3', name: 'Smith, Sally', isAcct:true},
           ]}
-          renderItem={({item}) =>
-            <View style={styles.contactRow}>
-              <Text style={styles.std}>{item.name}</Text>
-            </View>
+          renderItem={
+            ({item}) => {
+              let iconStr;
+              let iconColor;
+              if(item.isAcct) {
+                iconStr = 'ios-checkmark-circle';
+                iconColor = 'green';
+              } else {
+                iconStr = 'ios-close-circle';
+                iconColor = 'red';
+              }
+
+              return <View style={styles.contactRow}>
+                <Ionicons name={iconStr} size={20} color={iconColor} />
+                <Text style={styles.contactName}>{item.name}</Text>
+              </View>;
+            }
           }
         />
       </View>
@@ -55,4 +68,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
+  contactName: {
+    marginTop: 3,
+    marginLeft: 5,
+  }
 });

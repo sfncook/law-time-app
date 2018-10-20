@@ -13,7 +13,6 @@ export default class AccountsListScreen extends React.Component {
   };
 
   constructor(props) {
-    console.log('this.props.navigation:',props.navigation);
     super(props);
     this.state = {
       hourlyRate:'100',
@@ -21,9 +20,7 @@ export default class AccountsListScreen extends React.Component {
   }
 
   onClickAddAccount() {
-    console.log("click onClickAddAccount");
     const { push } = this.props.navigation;
-    // navigate('AddAccount');
     push('AddAccount');
   }
 
