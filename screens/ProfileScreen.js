@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Button,
   Keyboard,
   StyleSheet,
   Text,
@@ -7,8 +8,11 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import { connect } from 'react-redux';
 
-export default class ProfileScreen extends React.Component {
+import {toggleTodo} from '../actions'
+
+const ProfileScreenComponent = class ProfileScreen extends React.Component {
   static navigationOptions = {
     title: 'Profile',
   };
@@ -24,6 +28,10 @@ export default class ProfileScreen extends React.Component {
     console.log(text);
   }
 
+  onClick() {
+    this.props.onTodoClick('test');
+  }
+
   render() {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -35,6 +43,10 @@ export default class ProfileScreen extends React.Component {
             onChangeText={(text)=> this.onChanged(text)}
             value={this.state.hourlyRate}
             maxLength={10}
+          />
+          <Button
+            onPress={this.onClick.bind(this)}
+            title='Click THIS'
           />
         </View>
       </TouchableWithoutFeedback>
@@ -70,3 +82,25 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
 });
+
+const mapStateToProps = state => {
+  console.log('state:',state);
+  return {
+    // todos: getVisibleTodos(state.todos, state.visibilityFilter)
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onTodoClick: id => {
+      dispatch(toggleTodo(id))
+    }
+  }
+};
+
+const ProfileScreen = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfileScreenComponent);
+
+export default ProfileScreen;
